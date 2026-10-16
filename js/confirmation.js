@@ -156,7 +156,7 @@ export async function initConfirmation() {
       'div',
       { class: 'card confirmation' },
       el('div', { class: 'success-mark', 'aria-hidden': 'true' }, '✓'),
-      el('img', { src: 'img/logo.png', alt: 'Street for Christ', class: 'confirm-logo', width: '1064', height: '812' }),
+      el('img', { src: 'img/logo.png', alt: 'Street for Christ', class: 'confirm-logo', width: '1100', height: '644' }),
       el('h1', {}, cancelled ? 'This registration is no longer active' : 'You are registered!'),
       el(
         'p',

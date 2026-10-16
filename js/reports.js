@@ -38,7 +38,7 @@ function renderReport() {
     el(
       'header',
       { class: 'report-head' },
-      el('img', { src: 'img/logo.png', alt: 'Street for Christ', class: 'report-logo', width: '1064', height: '811' }),
+      el('img', { src: 'img/logo.png', alt: 'Street for Christ', class: 'report-logo', width: '1100', height: '644' }),
       el(
         'div',
         { class: 'report-title' },

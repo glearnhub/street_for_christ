@@ -1,2 +1,0 @@
-Save the Street for Christ logo in this folder as logo-source.png (PNG, transparent background if possible).
-The icons and the link-preview image are generated from it.
