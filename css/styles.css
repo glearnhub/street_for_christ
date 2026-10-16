@@ -892,37 +892,6 @@ body {
   margin: 0 0 1rem;
   color: var(--muted);
 }
-.amounts {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.5rem;
-}
-.amount {
-  min-height: 46px;
-  border: 1.5px solid var(--primary);
-  background: #fff;
-  color: var(--primary);
-  border-radius: 10px;
-  font: inherit;
-  font-weight: 600;
-  cursor: pointer;
-}
-.amount:hover {
-  background: var(--accent);
-}
-.amount.selected {
-  background: var(--primary);
-  color: #fff;
-}
-.amount-any {
-  grid-column: span 2;
-}
-.support-instruction {
-  margin: 0.9rem 0;
-  font-weight: 600;
-  color: var(--primary);
-  min-height: 1.5em;
-}
 .till {
   display: flex;
   align-items: center;
@@ -970,9 +939,6 @@ body {
   color: var(--muted);
   opacity: 1;
   max-width: none;
-}
-.hero .support-card .support-instruction {
-  color: var(--primary);
 }
 .hero .support-card .support-steps {
   color: var(--text);
