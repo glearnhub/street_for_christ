@@ -75,9 +75,9 @@ export async function initEventDetails() {
         el('ul', { class: 'facts' }, ...facts.map(([k, v]) => el('li', {}, el('strong', {}, k), el('span', {}, v)))),
         el('p', { class: 'description' }, ev.description || ''),
         open
-          ? el('a', { class: 'btn btn-primary', href: `register.html?id=${ev.id}` }, 'Register now')
+          ? el('a', { class: 'btn btn-primary', href: `register?id=${ev.id}` }, 'Register now')
           : el('div', { class: 'notice notice-info' }, STATE_MESSAGES[ev.registration_state] || 'Registration is not available.'),
-        el('p', {}, el('a', { href: 'events.html' }, '← Back to all events'))
+        el('p', {}, el('a', { href: 'events' }, '← Back to all events'))
       )
     )
   )

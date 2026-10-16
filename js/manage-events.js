@@ -46,7 +46,7 @@ function renderEvents() {
       'div',
       { class: 'row-actions' },
       el('button', { class: 'btn btn-outline btn-small', type: 'button', onclick: () => openEventForm(ev) }, 'Edit'),
-      el('a', { class: 'btn btn-outline btn-small', href: `event-registrations.html?id=${ev.id}` }, 'Registrations'),
+      el('a', { class: 'btn btn-outline btn-small', href: `event-registrations?id=${ev.id}` }, 'Registrations'),
       el('button', { class: 'btn btn-outline btn-small', type: 'button', onclick: () => openLinks(ev) }, 'Check-in links'),
       ev.status === 'published'
         ? el('button', { class: 'btn btn-outline btn-small', type: 'button', onclick: () => setStatus(ev, 'draft') }, 'Unpublish')
@@ -296,7 +296,7 @@ async function saveEvent(statusChoice) {
 // Volunteer check-in links
 // ---------------------------------------------------------------------------
 function checkInUrl(token) {
-  return new URL('check-in.html', window.location.href).href + '#' + token
+  return new URL('check-in', window.location.href).href + '#' + token
 }
 
 async function openLinks(ev) {

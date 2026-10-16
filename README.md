@@ -273,7 +273,7 @@ link is printed in the terminal.
 | 12 | Search by part of a name, then a phone number | Match shows name and masked phone only |
 | 13 | Try a link for event A against a participant of event B | Refused |
 | 14 | Revoke the link and reload the check-in page | "link has been revoked" |
-| 15 | Log out, visit `admin-dashboard.html` | Redirected to login |
+| 15 | Log out, visit `/admin-dashboard` | Redirected to login |
 | 16 | Log in with a non-admin Supabase user | "does not have administrator access" |
 | 17 | Open Reports and pick an event | Logo and event details on top, then the registered people with ticks and crosses |
 | 18 | Export CSV and open in Excel | Accents and phone numbers are intact; Attendance reads Attended / Did not attend |
@@ -348,3 +348,10 @@ move the site to a custom domain, replace that address in the `og:` and `twitter
 tags of `index.html`, `events.html`, `event-details.html`, `register.html`,
 `confirmation.html` and `check-in.html`. Chat apps cache previews, so a link shared
 before this change may keep its old preview for a while.
+
+## Clean addresses
+
+`vercel.json` turns on clean URLs: the pages are reached without `.html`, for example
+`/` (home), `/events`, `/register?id=...` and the administrator login at **`/admin`**.
+Old `.html` addresses redirect to the clean ones, so bookmarks and shared links keep working.
+(The offline test server behaves the same way.)

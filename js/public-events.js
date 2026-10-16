@@ -56,9 +56,9 @@ export function eventCard(ev, posterUrl) {
         'div',
         { class: 'card-actions' },
         open
-          ? el('a', { class: 'btn btn-primary btn-small', href: `register.html?id=${ev.id}` }, 'Register')
+          ? el('a', { class: 'btn btn-primary btn-small', href: `register?id=${ev.id}` }, 'Register')
           : null,
-        el('a', { class: 'btn btn-outline btn-small', href: `event-details.html?id=${ev.id}` }, 'View details')
+        el('a', { class: 'btn btn-outline btn-small', href: `event-details?id=${ev.id}` }, 'View details')
       )
     )
   )

@@ -338,9 +338,18 @@ const server = http.createServer(async (req, res) => {
     if (!file.startsWith(root) || file.includes(`${path.sep}tests${path.sep}`) || file.includes(`${path.sep}sql${path.sep}`)) {
       return send(res, 404, { error: 'not found' })
     }
-    if (existsSync(file) && statSync(file).isFile()) {
-      res.writeHead(200, { 'Content-Type': MIME[path.extname(file)] || 'application/octet-stream' })
-      return res.end(readFileSync(file))
+    // Same clean addresses as production (vercel.json cleanUrls): /admin serves admin.html,
+    // and the old .html addresses redirect to the clean ones.
+    if (url.pathname.endsWith('.html')) {
+      const clean = url.pathname === '/index.html' ? '/' : url.pathname.slice(0, -5)
+      res.writeHead(308, { Location: clean + url.search })
+      return res.end()
+    }
+    const candidates = [file, file + '.html']
+    const found = candidates.find((f) => existsSync(f) && statSync(f).isFile())
+    if (found) {
+      res.writeHead(200, { 'Content-Type': MIME[path.extname(found)] || 'application/octet-stream' })
+      return res.end(readFileSync(found))
     }
     return send(res, 404, { error: 'not found' })
   } catch (e) {

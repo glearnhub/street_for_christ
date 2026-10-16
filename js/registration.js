@@ -132,7 +132,7 @@ export async function initRegistration() {
       }
       // The secret goes in the URL fragment, which is never sent to any server.
       window.location.href =
-        `confirmation.html?ref=${encodeURIComponent(data.registration_reference)}` +
+        `confirmation?ref=${encodeURIComponent(data.registration_reference)}` +
         `#t=${encodeURIComponent(data.qr_token)}`
       return
     }

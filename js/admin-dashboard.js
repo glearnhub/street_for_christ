@@ -57,7 +57,7 @@ function renderRecent(events) {
             el('td', {}, eventStatusBadge(e.status)),
             el('td', {}, `${e.registrations} / ${e.capacity}`),
             el('td', {}, String(e.attendees)),
-            el('td', {}, el('a', { class: 'btn btn-outline btn-small', href: `event-registrations.html?id=${e.event_id}` }, 'Open'))
+            el('td', {}, el('a', { class: 'btn btn-outline btn-small', href: `event-registrations?id=${e.event_id}` }, 'Open'))
           )
         )
       )

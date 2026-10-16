@@ -22,8 +22,8 @@ export function brandMark(size = 40) {
 
 export function renderPublicLayout(active = '') {
   const links = [
-    { href: 'index.html', label: 'Home', key: 'home' },
-    { href: 'events.html', label: 'Upcoming Events', key: 'events' },
+    { href: '/', label: 'Home', key: 'home' },
+    { href: 'events', label: 'Upcoming Events', key: 'events' },
   ]
 
   const nav = el(
@@ -56,7 +56,7 @@ export function renderPublicLayout(active = '') {
     el(
       'div',
       { class: 'container header-inner' },
-      el('a', { href: 'index.html', class: 'brand' }, brandMark(38), el('span', {}, SITE.name)),
+      el('a', { href: '/', class: 'brand' }, brandMark(38), el('span', {}, SITE.name)),
       toggle,
       nav
     )
@@ -70,7 +70,7 @@ export function renderPublicLayout(active = '') {
       { class: 'container footer-inner' },
       el('div', {}, el('strong', {}, SITE.name), el('p', {}, 'Events made simple: register, attend, celebrate.')),
       el('ul', { class: 'footer-links' },
-        el('li', {}, el('a', { href: 'events.html' }, 'Upcoming events'))
+        el('li', {}, el('a', { href: 'events' }, 'Upcoming events'))
       ),
       el(
         'p',

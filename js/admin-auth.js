@@ -8,14 +8,14 @@ import { brandMark } from './layout.js'
 import { el, $, notice, notConfiguredNotice } from './ui.js'
 
 const NAV = [
-  { key: 'dashboard', href: 'admin-dashboard.html', label: 'Dashboard', icon: '▦' },
-  { key: 'events', href: 'manage-events.html', label: 'Events', icon: '📅' },
-  { key: 'reports', href: 'reports.html', label: 'Reports', icon: '📊' },
+  { key: 'dashboard', href: 'admin-dashboard', label: 'Dashboard', icon: '▦' },
+  { key: 'events', href: 'manage-events', label: 'Events', icon: '📅' },
+  { key: 'reports', href: 'reports', label: 'Reports', icon: '📊' },
 ]
 
 export async function signOut() {
   await supabase.auth.signOut()
-  window.location.href = 'admin.html'
+  window.location.href = 'admin'
 }
 
 async function isAdminUser(userId) {
@@ -32,7 +32,7 @@ function renderShell(active, session) {
   const topbar = $('#admin-topbar')
 
   sidebar.replaceChildren(
-    el('a', { href: 'admin-dashboard.html', class: 'admin-brand' }, brandMark(34), el('span', {}, 'Street for Christ')),
+    el('a', { href: 'admin-dashboard', class: 'admin-brand' }, brandMark(34), el('span', {}, 'Street for Christ')),
     el(
       'nav',
       { 'aria-label': 'Administration' },
@@ -40,7 +40,7 @@ function renderShell(active, session) {
         el('a', { href: n.href, class: n.key === active ? 'active' : '' }, el('span', { 'aria-hidden': 'true' }, n.icon), n.label)
       )
     ),
-    el('div', { class: 'sidebar-foot' }, el('a', { href: 'index.html' }, '← View public site'))
+    el('div', { class: 'sidebar-foot' }, el('a', { href: '/' }, '← View public site'))
   )
 
   topbar.replaceChildren(
@@ -109,13 +109,13 @@ export async function requireAdmin(active) {
   const { data } = await supabase.auth.getSession()
   const session = data.session
   if (!session) {
-    window.location.replace('admin.html')
+    window.location.replace('admin')
     return null
   }
 
   if (!(await isAdminUser(session.user.id))) {
     await supabase.auth.signOut()
-    window.location.replace('admin.html?denied=1')
+    window.location.replace('admin?denied=1')
     return null
   }
 
@@ -125,7 +125,7 @@ export async function requireAdmin(active) {
 
   // If the session ends while the page is open, send the user back to log in.
   supabase.auth.onAuthStateChange((event) => {
-    if (event === 'SIGNED_OUT') window.location.replace('admin.html')
+    if (event === 'SIGNED_OUT') window.location.replace('admin')
   })
 
   return session
@@ -149,7 +149,7 @@ export async function initLogin() {
   // Already signed in as an admin: go straight to the dashboard.
   const { data } = await supabase.auth.getSession()
   if (data.session && (await isAdminUser(data.session.user.id))) {
-    window.location.replace('admin-dashboard.html')
+    window.location.replace('admin-dashboard')
     return
   }
 
@@ -171,7 +171,7 @@ export async function initLogin() {
       await supabase.auth.signOut()
       notice(status, 'That account does not have administrator access.', 'error')
     } else {
-      window.location.replace('admin-dashboard.html')
+      window.location.replace('admin-dashboard')
       return
     }
 
