@@ -65,7 +65,7 @@ async function buildTicket({ qrCanvas, eventName, when, venue, person, reference
   const ctx = c.getContext('2d')
   ctx.fillStyle = '#ffffff'
   ctx.fillRect(0, 0, W, H)
-  ctx.fillStyle = '#600086'
+  ctx.fillStyle = '#1e40af'
   ctx.fillRect(0, 0, W, 24)
   ctx.fillRect(0, H - 24, W, 24)
   ctx.textAlign = 'center'
@@ -76,7 +76,7 @@ async function buildTicket({ qrCanvas, eventName, when, venue, person, reference
     ctx.drawImage(logo, (W - w) / 2, y, w, logoH)
     y += logoH + 40
   }
-  ctx.fillStyle = '#600086'
+  ctx.fillStyle = '#1e40af'
   ctx.font = font(700, 44)
   for (const l of nameLines) { y += 52; ctx.fillText(l, W / 2, y); y += 4 }
   ctx.fillStyle = '#333333'
@@ -96,12 +96,12 @@ async function buildTicket({ qrCanvas, eventName, when, venue, person, reference
   // The QR code must stay crisp, so it is scaled without smoothing.
   ctx.imageSmoothingEnabled = false
   ctx.fillStyle = '#ffffff'
-  ctx.strokeStyle = '#d9c2e6'
+  ctx.strokeStyle = '#c3d6f5'
   ctx.lineWidth = 3
   ctx.strokeRect((W - qr) / 2 - 18, y - 18, qr + 36, qr + 36)
   ctx.drawImage(qrCanvas, (W - qr) / 2, y, qr, qr)
   y += qr + 80
-  ctx.fillStyle = '#600086'
+  ctx.fillStyle = '#1e40af'
   ctx.font = '700 40px "Courier New", monospace'
   ctx.fillText(reference, W / 2, y)
   ctx.fillStyle = '#777777'
@@ -148,7 +148,7 @@ export async function initConfirmation() {
     width: 240,
     margin: 1,
     errorCorrectionLevel: 'M',
-    color: { dark: '#600086', light: '#FFFFFF' },
+    color: { dark: '#1e40af', light: '#FFFFFF' },
   })
 
   host.replaceChildren(

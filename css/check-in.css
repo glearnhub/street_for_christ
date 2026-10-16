@@ -1,11 +1,11 @@
 /* Volunteer check-in: large touch targets, high contrast, phone first */
 body.checkin {
-  background: #faf5fc;
+  background: #f5f9ff;
   display: block;
 }
 
 .ci-header {
-  background: linear-gradient(135deg, #600086, #8e24aa);
+  background: linear-gradient(135deg, #1e40af, #2563eb);
   color: #fff;
   padding: 1rem 1.25rem 1.1rem;
   text-align: center;

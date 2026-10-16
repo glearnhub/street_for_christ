@@ -368,7 +368,7 @@ async function loadLinks() {
 async function showNewLink(result, label) {
   const url = checkInUrl(result.token)
   const canvas = el('canvas', { width: 180, height: 180, 'aria-label': 'QR code of the check-in link' })
-  await QRCode.toCanvas(canvas, url, { width: 180, margin: 1, color: { dark: '#600086', light: '#FFFFFF' } })
+  await QRCode.toCanvas(canvas, url, { width: 180, margin: 1, color: { dark: '#1e40af', light: '#FFFFFF' } })
 
   $('#new-link').replaceChildren(
     el(

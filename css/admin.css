@@ -1,6 +1,6 @@
 /* Administrator area (loads after styles.css) */
 body.admin {
-  background: #faf5fc;
+  background: #f5f9ff;
   display: block;
 }
 
@@ -12,7 +12,7 @@ body.admin {
 
 #admin-sidebar {
   background: var(--primary);
-  color: #f3e5f5;
+  color: #dbeafe;
   padding: 1.25rem 1rem;
   display: flex;
   flex-direction: column;
@@ -42,7 +42,7 @@ body.admin {
   display: flex;
   gap: 0.7rem;
   align-items: center;
-  color: #f3e5f5;
+  color: #dbeafe;
   text-decoration: none;
   padding: 0.65rem 0.85rem;
   border-radius: 10px;
@@ -61,7 +61,7 @@ body.admin {
 }
 
 .sidebar-foot a {
-  color: #e1bee7;
+  color: #bfdbfe;
 }
 
 .admin-content {
@@ -195,14 +195,14 @@ table.data td {
 }
 
 table.data th {
-  background: #fbf7fc;
+  background: #f7faff;
   color: var(--primary);
   font-weight: 600;
   white-space: nowrap;
 }
 
 table.data tr:hover td {
-  background: #fdf9fe;
+  background: #fafcff;
 }
 
 .toolbar {
@@ -293,7 +293,7 @@ dialog::backdrop {
   align-items: center;
   justify-content: center;
   padding: 1.5rem;
-  background: linear-gradient(135deg, #600086, #8e24aa);
+  background: linear-gradient(135deg, #1e40af, #2563eb);
 }
 
 .login-card {
@@ -351,7 +351,7 @@ dialog::backdrop {
 }
 
 /* ---- Logo ---- */
-/* The purple emblem needs a light disc to stand out on the purple sidebar. */
+/* The emblem needs a light disc to stand out on the dark sidebar. */
 .admin-brand .brand-logo {
   background: #fff;
   border-radius: 50%;
@@ -425,7 +425,7 @@ dialog::backdrop {
     align-items: flex-start;
     gap: 1rem;
     border: 0;
-    border-bottom: 1px solid #f1e6f5;
+    border-bottom: 1px solid #e8f0fe;
     padding: 0.55rem 0;
     text-align: right;
     overflow-wrap: anywhere;
