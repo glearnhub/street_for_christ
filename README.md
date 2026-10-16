@@ -342,7 +342,7 @@ does not send emails itself.
 ## Link previews (thumbnail)
 
 When a page link is shared on WhatsApp, Facebook, X or similar, the preview shows the
-Street for Christ logo (`img/og-image.png`, 1200×630). The tags are in the `<head>`
+Street for Christ logo (`img/og-image.jpg`, 1200×630). The tags are in the `<head>`
 of each public page and use the absolute address `https://street-for-christ.vercel.app`. If you
 move the site to a custom domain, replace that address in the `og:` and `twitter:` meta
 tags of `index.html`, `events.html`, `event-details.html`, `register.html`,
