@@ -1,0 +1,700 @@
+/* Administrator area (loads after styles.css) */
+body.admin {
+  background: #faf5fc;
+  display: block;
+}
+
+.admin-layout {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  min-height: 100vh;
+}
+
+#admin-sidebar {
+  background: var(--primary);
+  color: #f3e5f5;
+  padding: 1.25rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.admin-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+#admin-sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+#admin-sidebar nav a {
+  display: flex;
+  gap: 0.7rem;
+  align-items: center;
+  color: #f3e5f5;
+  text-decoration: none;
+  padding: 0.65rem 0.85rem;
+  border-radius: 10px;
+  font-weight: 500;
+}
+
+#admin-sidebar nav a:hover,
+#admin-sidebar nav a.active {
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+}
+
+.sidebar-foot {
+  margin-top: auto;
+  font-size: 0.9rem;
+}
+
+.sidebar-foot a {
+  color: #e1bee7;
+}
+
+.admin-content {
+  min-width: 0;
+}
+
+#admin-topbar {
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding: 0.7rem 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.menu-btn {
+  display: none;
+  margin-right: auto;
+  background: none;
+  border: 0;
+  font-size: 1.5rem;
+  color: var(--primary);
+  cursor: pointer;
+}
+
+#page {
+  padding: 1.5rem;
+  max-width: 1200px;
+}
+
+.page-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.page-title h1 {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+@media (max-width: 860px) {
+  .admin-layout {
+    grid-template-columns: 1fr;
+  }
+  #admin-sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: 260px;
+    z-index: 60;
+    transform: translateX(-100%);
+    transition: transform 0.2s ease;
+  }
+  #admin-sidebar.open {
+    transform: none;
+    box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.35);
+  }
+  .menu-btn {
+    display: block;
+  }
+  #page {
+    padding: 1rem;
+  }
+}
+
+/* ---- Stat cards ---- */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.stat {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.15rem;
+  box-shadow: var(--shadow);
+}
+
+.stat .value {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1.2;
+}
+
+.stat .label {
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+/* ---- Panels and tables ---- */
+.panel {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.panel h2 {
+  font-size: 1.1rem;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table.data {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.93rem;
+}
+
+table.data th,
+table.data td {
+  text-align: left;
+  padding: 0.65rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+table.data th {
+  background: #fbf7fc;
+  color: var(--primary);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+table.data tr:hover td {
+  background: #fdf9fe;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: end;
+  margin-bottom: 1rem;
+}
+
+.toolbar .field {
+  margin: 0;
+  flex: 1 1 180px;
+}
+
+.toolbar .field.grow {
+  flex: 2 1 260px;
+}
+
+.row-actions {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.pager {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+/* ---- Dialog ---- */
+dialog {
+  border: 0;
+  border-radius: var(--radius);
+  padding: 0;
+  width: min(680px, 94vw);
+  max-height: 92vh;
+  box-shadow: 0 20px 60px rgba(31, 41, 55, 0.35);
+}
+
+dialog::backdrop {
+  background: rgba(31, 41, 55, 0.5);
+}
+
+.dialog-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 1;
+}
+
+.dialog-head h2 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.dialog-body {
+  padding: 1.25rem;
+}
+
+.link-box {
+  background: var(--accent);
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  word-break: break-all;
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 0.85rem;
+}
+
+.chart-box {
+  position: relative;
+  height: 280px;
+}
+
+/* ---- Login ---- */
+.login-wrap {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #600086, #8e24aa);
+}
+
+.login-card {
+  width: min(420px, 100%);
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 2rem 1.75rem;
+  box-shadow: var(--shadow);
+}
+
+.login-card .brand-row {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 1rem;
+}
+
+/* ---- Reports: print as a clean document ---- */
+.print-only {
+  display: none;
+}
+
+@media print {
+  body.admin {
+    background: #fff;
+  }
+  .admin-layout {
+    display: block;
+  }
+  #admin-sidebar,
+  #admin-topbar,
+  .no-print,
+  .toolbar,
+  .pager,
+  .row-actions {
+    display: none !important;
+  }
+  .print-only {
+    display: block;
+  }
+  #page {
+    padding: 0;
+    max-width: none;
+  }
+  .panel,
+  .stat {
+    box-shadow: none;
+    break-inside: avoid;
+  }
+  table.data th {
+    background: #eee !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+
+/* ---- Logo ---- */
+/* The purple emblem needs a light disc to stand out on the purple sidebar. */
+.admin-brand .brand-logo {
+  background: #fff;
+  border-radius: 50%;
+  padding: 3px;
+}
+
+.login-logo {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.login-logo img {
+  width: min(240px, 80%);
+  height: auto;
+  margin: 0 auto;
+}
+
+/* ---------------------------------------------------------------------------
+   Mobile refinements
+   --------------------------------------------------------------------------- */
+@media (max-width: 860px), (pointer: coarse) {
+  .menu-btn {
+    min-width: 44px;
+    min-height: 44px;
+    font-size: 1.6rem;
+  }
+
+  #admin-sidebar nav a {
+    min-height: 48px;
+  }
+
+  #admin-topbar {
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+  }
+}
+
+/* Tables turn into stacked cards on phones, so nothing needs sideways scrolling. */
+@media (max-width: 640px) {
+  table.data,
+  table.data tbody,
+  table.data tr,
+  table.data td {
+    display: block;
+    width: 100%;
+  }
+
+  table.data thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+
+  table.data tr {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 0.4rem 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+
+  table.data tr:hover td {
+    background: transparent;
+  }
+
+  table.data td {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    border: 0;
+    border-bottom: 1px solid #f1e6f5;
+    padding: 0.55rem 0;
+    text-align: right;
+    overflow-wrap: anywhere;
+  }
+
+  table.data td:last-child {
+    border-bottom: 0;
+  }
+
+  table.data td::before {
+    content: attr(data-label);
+    flex: 0 0 38%;
+    text-align: left;
+    font-weight: 600;
+    color: var(--primary);
+  }
+
+  /* Action cells have no heading: use the full width instead. */
+  table.data td[data-label='']::before {
+    content: none;
+  }
+
+  table.data td[data-label=''] {
+    display: block;
+    text-align: left;
+  }
+
+  table.data td[data-label=''] .row-actions {
+    justify-content: flex-start;
+  }
+
+  .row-actions .btn {
+    flex: 1 1 auto;
+  }
+
+  .toolbar .field,
+  .toolbar .field.grow {
+    flex: 1 1 100%;
+  }
+
+  .page-title .row-actions {
+    width: 100%;
+  }
+
+  .page-title .row-actions .btn {
+    flex: 1 1 auto;
+  }
+
+  .pager {
+    justify-content: center;
+  }
+
+  dialog {
+    width: 100vw;
+    max-width: 100vw;
+    max-height: 100dvh;
+    height: 100dvh;
+    border-radius: 0;
+    margin: 0;
+  }
+}
+
+/* The e-mail address is the first thing to drop on narrow screens. */
+@media (max-width: 520px) {
+  .topbar-email {
+    display: none;
+  }
+  #admin-topbar {
+    justify-content: space-between;
+  }
+}
+
+/* Stat cards: two per row on phones so the data sits closer to the top. */
+@media (max-width: 520px) {
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem;
+  }
+  .stat {
+    padding: 0.7rem 0.8rem;
+  }
+  .stat .value {
+    font-size: 1.45rem;
+  }
+  .stat .label {
+    font-size: 0.8rem;
+  }
+}
+
+.cell-value {
+  display: block;
+  min-width: 0;
+}
+
+@media (max-width: 640px) {
+  .cell-value {
+    flex: 1 1 auto;
+    text-align: right;
+    overflow-wrap: anywhere;
+  }
+
+  .cell-value > div {
+    text-align: right;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Attendance report
+   --------------------------------------------------------------------------- */
+.report-head {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 3px solid var(--primary);
+}
+
+.report-logo {
+  width: 150px;
+  height: auto;
+  flex: 0 0 auto;
+}
+
+.report-title h2 {
+  font-size: 1.25rem;
+  margin: 0 0 0.15rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.report-event {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.25;
+}
+
+.report-generated {
+  font-size: 0.8rem;
+  margin-top: 0.35rem;
+}
+
+.report-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+/* Green tick for attended, red cross for not attended. */
+.mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 1.1rem;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.mark-yes {
+  color: #15803d;
+  background: #dcfce7;
+}
+
+.mark-no {
+  color: #dc2626;
+  background: #fee2e2;
+}
+
+.report-table td.num {
+  width: 3.5rem;
+  color: var(--muted);
+}
+
+.report-table .attendance-cell {
+  text-align: center;
+  width: 7rem;
+}
+
+.report-table th:last-child {
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .report-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .report-logo {
+    width: 120px;
+  }
+
+  .report-table .attendance-cell,
+  .report-table td.num {
+    width: 100%;
+  }
+}
+
+@media print {
+  @page {
+    margin: 14mm;
+  }
+
+  .report.panel {
+    border: 0;
+    padding: 0;
+    margin: 0;
+  }
+
+  .report-logo {
+    width: 130px;
+  }
+
+  .mark,
+  .report-head {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .report-table th,
+  .report-table td {
+    padding: 0.4rem 0.6rem;
+  }
+
+  .report-table tr {
+    break-inside: avoid;
+  }
+}
+
+/* Poster preview in the event form */
+.poster-preview {
+  margin: 0.5rem 0;
+}
+
+.poster-preview .poster {
+  aspect-ratio: 4 / 3;
+  max-width: 320px;
+  border-radius: 12px;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.poster-preview .poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  position: relative;
+}
+
+/* ---- Thank-you email panel ---- */
+.check-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 44px;
+  font-size: 0.9rem;
+}
+#email-list {
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 16px;
+}

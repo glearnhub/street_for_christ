@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="robots" content="noindex" />
+    <title>Reports · Street for Christ</title>
+    <link rel="icon" type="image/png" sizes="64x64" href="img/favicon-64.png" />
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/admin.css" />
+  </head>
+  <body class="admin">
+    <div class="admin-layout">
+      <aside id="admin-sidebar" aria-label="Administration menu"></aside>
+      <div class="admin-content">
+        <header id="admin-topbar"></header>
+        <main id="page" class="hidden">
+          <div class="page-title no-print">
+            <h1>Reports</h1>
+          </div>
+          <div id="status" aria-live="polite"></div>
+
+          <div class="toolbar no-print">
+            <div class="field grow">
+              <label for="event-select">Event</label>
+              <select id="event-select"></select>
+            </div>
+            <button id="export" class="btn btn-primary" type="button">Export CSV</button>
+            <button id="print" class="btn btn-outline" type="button">Print / save as PDF</button>
+          </div>
+
+          <article class="report panel" id="report" aria-live="polite"></article>
+        </main>
+      </div>
+    </div>
+    <script type="module">
+      import { initReports } from './js/reports.js'
+      initReports()
+    </script>
+  </body>
+</html>

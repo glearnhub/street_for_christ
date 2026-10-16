@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Register · Street for Christ</title>
+    <meta name="description" content="Register for an event." />
+    <meta name="theme-color" content="#600086" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Street for Christ" />
+    <meta property="og:title" content="Register · Street for Christ" />
+    <meta property="og:description" content="Register for an event." />
+    <meta property="og:url" content="https://street-for-christ.vercel.app/register.html" />
+    <meta property="og:image" content="https://street-for-christ.vercel.app/img/og-image.png" />
+    <meta property="og:image:secure_url" content="https://street-for-christ.vercel.app/img/og-image.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Street for Christ logo" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Register · Street for Christ" />
+    <meta name="twitter:description" content="Register for an event." />
+    <meta name="twitter:image" content="https://street-for-christ.vercel.app/img/og-image.png" />
+    <link rel="icon" type="image/png" sizes="64x64" href="img/favicon-64.png" />
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div id="site-header"></div>
+
+    <main>
+      <div class="page-header">
+        <div class="container">
+          <h1>Event registration</h1>
+        </div>
+      </div>
+      <section class="section">
+        <div class="container narrow">
+          <div id="event-summary"></div>
+          <div id="status" aria-live="polite"></div>
+          <div id="form-wrap" class="card hidden">
+            <form id="register-form" novalidate>
+              <div class="field" data-field="fullName">
+                <label for="fullName">Full name</label>
+                <input id="fullName" name="fullName" type="text" autocomplete="name" maxlength="100" required />
+                <div class="error" role="alert"></div>
+              </div>
+              <div class="field" data-field="email">
+                <label for="email">Email address</label>
+                <input id="email" name="email" type="email" autocomplete="email" maxlength="254" required />
+                <div class="error" role="alert"></div>
+              </div>
+              <div class="field" data-field="phone">
+                <label for="phone">Phone number</label>
+                <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="0712 345 678" required />
+                <div class="hint">Use a number you can be reached on.</div>
+                <div class="error" role="alert"></div>
+              </div>
+              <div class="field" data-field="church">
+                <label for="church">Church</label>
+                <select id="church" name="church" required>
+                  <option value="">Select your church</option>
+                  <option value="__other">Other</option>
+                </select>
+                <div class="error" role="alert"></div>
+              </div>
+              <div class="field hidden" data-field="churchOther" id="church-other-field">
+                <label for="churchOther">Name of your church</label>
+                <input id="churchOther" name="churchOther" type="text" maxlength="150" autocomplete="organization" />
+                <div class="error" role="alert"></div>
+              </div>
+              <div class="field consent" data-field="consent">
+                <label class="consent-label" for="consent">
+                  <input id="consent" name="consent" type="checkbox" required />
+                  <span>
+                    I consent to Street for Christ collecting and using my name, email address,
+                    phone number and church to manage my registration and attendance at this event,
+                    and to contact me about it, including sending a thank-you message after the event.
+                  </span>
+                </label>
+                <div class="error" role="alert"></div>
+              </div>
+              <button id="submit-btn" class="btn btn-primary" type="submit">Complete registration</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+    <div id="site-footer"></div>
+    <noscript><p class="container">This site needs JavaScript to work. Please enable it in your browser.</p></noscript>
+    <script type="module">
+      import { initRegistration } from './js/registration.js'
+      initRegistration()
+    </script>
+  </body>
+</html>
