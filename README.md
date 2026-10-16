@@ -176,6 +176,11 @@ Check-in methods:
 * **"Camera is being used by another app":** close the other app and retry.
 * The page must be served over **HTTPS** for the live camera to work.
 
+**Choosing when check-in opens:** each event has an optional **Check-in opens** time in the
+event form. Leave it empty for the default below; set it to open check-in earlier (for example
+to test the scanner) or later. If you set it on an existing database, re-run `sql/schema.sql`,
+`sql/functions.sql` and `sql/policies.sql` first.
+
 Check-in is accepted from **seven days before** the event starts (so volunteers can
 rehearse) until **one day after** it ends, in Nairobi time. Outside that window the
 check-in screen says exactly when it opens and closes. Duplicate check-ins report "Already checked in" and create no new

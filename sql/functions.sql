@@ -512,6 +512,7 @@ declare
   r public.registrations;
   ev public.events;
   v_at timestamptz;
+  v_open timestamptz;
   v_inserted uuid;
 begin
   select * into r
@@ -524,16 +525,18 @@ begin
 
   select * into ev from public.events where id = p_event_id;
 
-  -- Check-in opens a week before the event (so volunteers can rehearse and test)
-  -- and closes one day after it ends. Times are shown in Nairobi time.
-  if now() < private.event_start_at(ev) - interval '7 days'
+  -- Check-in opens a week before the event (so volunteers can rehearse and test), or at
+  -- the time the administrator chose for this event, and closes one day after it ends.
+  -- Times are shown in Nairobi time.
+  v_open := coalesce(ev.checkin_opens_at, private.event_start_at(ev) - interval '7 days');
+  if now() < v_open
      or now() > private.event_end_at(ev) + interval '1 day' then
     return private.fail(
       'outside_window',
       format(
         'Check-in for "%s" is open from %s until %s (Nairobi time).',
         ev.name,
-        to_char((private.event_start_at(ev) - interval '7 days') at time zone private.event_tz(), 'FMDD Mon YYYY, FMHH12:MI AM'),
+        to_char(v_open at time zone private.event_tz(), 'FMDD Mon YYYY, FMHH12:MI AM'),
         to_char((private.event_end_at(ev) + interval '1 day') at time zone private.event_tz(), 'FMDD Mon YYYY, FMHH12:MI AM')
       )
     );

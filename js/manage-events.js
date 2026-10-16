@@ -153,6 +153,7 @@ function openEventForm(ev = null) {
     form.show_remaining.value = String(ev.show_remaining)
     form.registration_opens_at.value = toLocalInput(ev.registration_opens_at)
     form.registration_closes_at.value = toLocalInput(ev.registration_closes_at)
+    form.checkin_opens_at.value = toLocalInput(ev.checkin_opens_at)
   }
 
   // Show the poster that is already saved (if any), so the admin sees how it fits.
@@ -189,6 +190,7 @@ function readForm(form) {
     show_remaining: form.show_remaining.value === 'true',
     opens: form.registration_opens_at.value ? new Date(form.registration_opens_at.value) : null,
     closes: form.registration_closes_at.value ? new Date(form.registration_closes_at.value) : null,
+    checkinOpens: form.checkin_opens_at.value ? new Date(form.checkin_opens_at.value) : null,
     file: form.poster.files[0] || null,
   }
 }
@@ -260,6 +262,7 @@ async function saveEvent(statusChoice) {
       show_remaining: v.show_remaining,
       registration_opens_at: v.opens ? v.opens.toISOString() : null,
       registration_closes_at: v.closes ? v.closes.toISOString() : null,
+      checkin_opens_at: v.checkinOpens ? v.checkinOpens.toISOString() : null,
       poster_path: posterPath,
     }
     if (statusChoice !== 'keep') payload.status = statusChoice

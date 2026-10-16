@@ -427,6 +427,19 @@ check('same-day end time before the start is rejected',
 check('later end date with an earlier clock time is accepted',
   !(await badEnd(`update public.events set end_date = event_date + 1, start_time = '20:00', end_time = '05:00' where id = '${evKesha}'`)))
 
+// An administrator can open check-in at a chosen time instead of 7 days before the event.
+const evLate = await makeEvent('Far Away Event', 5, { date: daysAhead(30) })
+const lateLink = await as('authenticated', () => rpc('admin_create_volunteer_link', { p_event_id: evLate, p_label: 'x', p_expires_at: new Date(Date.now() + 86400000).toISOString() }), { uid: adminId })
+const lateReg = await reg(evLate, 83, {}, { ip: '10.7.0.9' })
+const lateTooEarly = await as('anon', () => rpc('volunteer_check_in_qr', { p_token: lateLink.token, p_code: lateReg.qr_token }), { ip: '10.7.0.10' })
+check('check-in refused 30 days before the event', lateTooEarly.error === 'outside_window', JSON.stringify(lateTooEarly))
+await db.query(`update public.events set checkin_opens_at = now() + interval '2 hours' where id = $1`, [evLate])
+const lateStillEarly = await as('anon', () => rpc('volunteer_check_in_qr', { p_token: lateLink.token, p_code: lateReg.qr_token }), { ip: '10.7.0.11' })
+check('chosen opening time in the future keeps check-in closed and is shown in the message', lateStillEarly.error === 'outside_window' && /open from/.test(lateStillEarly.message), JSON.stringify(lateStillEarly))
+await db.query(`update public.events set checkin_opens_at = now() - interval '5 minutes' where id = $1`, [evLate])
+const lateOpen = await as('anon', () => rpc('volunteer_check_in_qr', { p_token: lateLink.token, p_code: lateReg.qr_token }), { ip: '10.7.0.12' })
+check('check-in works once the chosen opening time has passed', lateOpen.ok && lateOpen.result === 'checked_in', JSON.stringify(lateOpen))
+
 // ===========================================================================
 console.log('\n6. Admin attendance and reports')
 // ===========================================================================

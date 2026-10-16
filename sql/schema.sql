@@ -36,6 +36,7 @@ create table if not exists public.events (
   poster_path text check (poster_path is null or char_length(poster_path) <= 300),
   registration_opens_at timestamptz,
   registration_closes_at timestamptz,
+  checkin_opens_at timestamptz,   -- optional: when volunteers may start checking people in (default: 7 days before the start)
   status text not null default 'draft' check (status in ('draft', 'published', 'cancelled')),
   created_by uuid references auth.users (id) on delete set null default auth.uid(),
   created_at timestamptz not null default now(),
@@ -53,6 +54,7 @@ create index if not exists events_status_date_idx on public.events (status, even
 -- Upgrade for databases created before end_date existed: an event may now end on a
 -- later day (a night vigil that finishes at 5 am). The end moment must be after the start.
 alter table public.events add column if not exists end_date date;
+alter table public.events add column if not exists checkin_opens_at timestamptz;
 alter table public.events drop constraint if exists events_end_after_start;
 alter table public.events drop constraint if exists events_end_date_valid;
 alter table public.events drop constraint if exists events_end_after_start_at;
