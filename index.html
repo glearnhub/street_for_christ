@@ -39,9 +39,34 @@
             <p>Discover upcoming events, register in a minute and check in quickly with your personal QR code.</p>
             <a class="btn btn-light" href="events.html">Explore Events</a>
           </div>
-          <div class="hero-logo">
-            <img src="img/logo.png" alt="Street for Christ: Love, Preach, Reachout" width="1100" height="644" />
-          </div>
+          <aside class="support-card" id="support-card" aria-labelledby="support-title">
+            <h2 id="support-title">Support the Kesha</h2>
+            <p class="support-lead">Partner with us in giving. Every amount, big or small, is a blessing.</p>
+            <div class="amounts" role="group" aria-label="Choose an amount">
+              <button type="button" class="amount" data-amount="100">KES 100</button>
+              <button type="button" class="amount" data-amount="200">KES 200</button>
+              <button type="button" class="amount" data-amount="500">KES 500</button>
+              <button type="button" class="amount" data-amount="1000">KES 1,000</button>
+              <button type="button" class="amount amount-any" data-amount="">Any amount</button>
+            </div>
+            <p class="support-instruction" id="support-instruction" aria-live="polite">
+              Choose an amount above, or give what is on your heart.
+            </p>
+            <div class="till">
+              <div>
+                <span class="till-label">Buy Goods Till Number</span>
+                <strong class="till-number" id="till-number">8758534</strong>
+                <span class="till-name">Name: Joshua</span>
+              </div>
+              <button type="button" id="copy-till" class="btn btn-primary btn-small">Copy till number</button>
+            </div>
+            <ol class="support-steps">
+              <li>Open <strong>M-Pesa</strong> and choose <strong>Lipa na M-Pesa</strong></li>
+              <li>Select <strong>Buy Goods and Services</strong></li>
+              <li>Enter till number <strong>8758534</strong> and your amount</li>
+              <li>Enter your M-Pesa PIN. The name shown should be <strong>Joshua</strong></li>
+            </ol>
+          </aside>
         </div>
       </section>
 
@@ -61,7 +86,9 @@
     <noscript><p class="container">This site needs JavaScript to work. Please enable it in your browser.</p></noscript>
     <script type="module">
       import { initHome } from './js/public-events.js'
+      import { initSupportCard } from './js/support.js'
       initHome()
+      initSupportCard()
     </script>
   </body>
 </html>

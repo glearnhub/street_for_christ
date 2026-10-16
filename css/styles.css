@@ -871,3 +871,109 @@ body {
 .field.invalid .consent-label {
   color: var(--error);
 }
+
+/* ---- Support the Kesha card (home page) ---- */
+.support-card {
+  background: #fff;
+  color: var(--text);
+  border-radius: var(--radius);
+  padding: 1.4rem 1.5rem;
+  box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.45);
+  width: 100%;
+  max-width: 440px;
+  justify-self: start;
+}
+.support-card h2 {
+  color: var(--primary);
+  margin: 0 0 0.25rem;
+  font-size: 1.4rem;
+}
+.support-lead {
+  margin: 0 0 1rem;
+  color: var(--muted);
+}
+.amounts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+.amount {
+  min-height: 46px;
+  border: 1.5px solid var(--primary);
+  background: #fff;
+  color: var(--primary);
+  border-radius: 10px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.amount:hover {
+  background: var(--accent);
+}
+.amount.selected {
+  background: var(--primary);
+  color: #fff;
+}
+.amount-any {
+  grid-column: span 2;
+}
+.support-instruction {
+  margin: 0.9rem 0;
+  font-weight: 600;
+  color: var(--primary);
+  min-height: 1.5em;
+}
+.till {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  background: var(--accent);
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+}
+.till span {
+  display: block;
+}
+.till-label {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+.till-number {
+  display: block;
+  font-size: 1.7rem;
+  letter-spacing: 0.06em;
+  color: var(--primary);
+  line-height: 1.2;
+}
+.till-name {
+  font-weight: 600;
+}
+.support-steps {
+  margin: 0.9rem 0 0;
+  padding-left: 1.2rem;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+.support-steps li {
+  margin-bottom: 0.2rem;
+}
+@media (min-width: 860px) {
+  .support-card {
+    justify-self: end;
+  }
+}
+
+/* The home banner makes its paragraphs white; the white card needs dark text. */
+.hero .support-card p {
+  color: var(--muted);
+  opacity: 1;
+  max-width: none;
+}
+.hero .support-card .support-instruction {
+  color: var(--primary);
+}
+.hero .support-card .support-steps {
+  color: var(--text);
+}
