@@ -193,7 +193,8 @@ select
   e.event_date,
   e.start_time,
   e.end_time,
-  e.capacity,
+  -- Capacity is public only when the administrator chose to show it (show_remaining).
+  case when e.show_remaining then e.capacity end as capacity,
   e.poster_path,
   e.registration_opens_at,
   e.registration_closes_at,

@@ -217,6 +217,22 @@ check('registration without consent rejected', noConsent.error === 'consent_requ
 check('consent time is recorded',
   (await db.query(`select consented_at is not null as ok from public.registrations where registration_reference = $1`, [r1.registration_reference])).rows[0].ok)
 
+// The administrator decides whether capacity is public or private.
+const evPrivCap = await makeEvent('Private Capacity Event', 7)
+await db.query(`update public.events set show_remaining = false where id = $1`, [evPrivCap])
+const privView = await as('anon', () => db.query('select capacity, spots_remaining, registration_state from public.public_events where id = $1', [evPrivCap]))
+check('private capacity is hidden from the public listing',
+  privView.rows[0].capacity === null && privView.rows[0].spots_remaining === null, JSON.stringify(privView.rows[0]))
+check('a private-capacity event can still be registered for',
+  (await reg(evPrivCap, 70, {}, { ip: '10.1.3.1' })).ok === true)
+await db.query(`update public.events set show_remaining = true where id = $1`, [evPrivCap])
+const pubView = await as('anon', () => db.query('select capacity, spots_remaining from public.public_events where id = $1', [evPrivCap]))
+check('public capacity is shown when the administrator chooses so',
+  pubView.rows[0].capacity === 7 && pubView.rows[0].spots_remaining === 6, JSON.stringify(pubView.rows[0]))
+await db.query(`update public.events set capacity = 1, show_remaining = false where id = $1`, [evPrivCap])
+check('a full event with private capacity still stops registration',
+  (await reg(evPrivCap, 71, {}, { ip: '10.1.3.2' })).error === 'event_full')
+
 check('invalid e-mail rejected', (await reg(evA, 9, { email: 'not-an-email' }, { ip: '10.1.0.3' })).error === 'invalid_email')
 check('invalid phone rejected', (await reg(evA, 9, { phone: '12' }, { ip: '10.1.0.3' })).error === 'invalid_phone')
 check('missing name rejected', (await reg(evA, 9, { name: ' ' }, { ip: '10.1.0.3' })).error === 'invalid_name')

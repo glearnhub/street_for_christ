@@ -355,3 +355,10 @@ before this change may keep its old preview for a while.
 `/` (home), `/events`, `/register?id=...` and the administrator login at **`/admin`**.
 Old `.html` addresses redirect to the clean ones, so bookmarks and shared links keep working.
 (The offline test server behaves the same way.)
+
+## Capacity: public or private
+
+In the event form, **Capacity and spaces left** is set to *Public* or *Private* for each event.
+Private hides the capacity and the spaces-left number from the public site and from the public
+data itself; administrators always see them, and registration still stops when the event is full.
+To apply this to an existing database, re-run `sql/functions.sql` and then `sql/policies.sql`.

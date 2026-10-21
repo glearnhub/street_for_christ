@@ -56,7 +56,8 @@ export async function initEventDetails() {
         ]),
     ['Venue', ev.venue],
     ev.registration_closes_at ? ['Register by', formatDateTime(ev.registration_closes_at)] : null,
-    ['Capacity', `${ev.capacity} participants`],
+    // Capacity and spaces left are only sent to the public when the administrator made them public.
+    ev.capacity !== null && ev.capacity !== undefined ? ['Capacity', `${ev.capacity} participants`] : null,
     ev.spots_remaining !== null && ev.spots_remaining !== undefined
       ? ['Spaces left', String(ev.spots_remaining)]
       : null,
