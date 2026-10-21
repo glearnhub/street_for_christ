@@ -32,7 +32,8 @@ create table if not exists public.events (
   end_date date,            -- null = the event ends on event_date (set it for overnight events)
   end_time time,
   capacity integer not null check (capacity > 0 and capacity <= 100000),
-  show_remaining boolean not null default true,
+  show_remaining boolean not null default true,    -- public: the number of spaces left
+  show_capacity boolean not null default false,    -- public: the total capacity (private unless the admin chooses)
   poster_path text check (poster_path is null or char_length(poster_path) <= 300),
   registration_opens_at timestamptz,
   registration_closes_at timestamptz,
@@ -55,6 +56,7 @@ create index if not exists events_status_date_idx on public.events (status, even
 -- later day (a night vigil that finishes at 5 am). The end moment must be after the start.
 alter table public.events add column if not exists end_date date;
 alter table public.events add column if not exists checkin_opens_at timestamptz;
+alter table public.events add column if not exists show_capacity boolean not null default false;
 alter table public.events drop constraint if exists events_end_after_start;
 alter table public.events drop constraint if exists events_end_date_valid;
 alter table public.events drop constraint if exists events_end_after_start_at;

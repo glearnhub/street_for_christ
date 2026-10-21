@@ -95,13 +95,22 @@
                   <input id="f-capacity" name="capacity" type="number" min="1" step="1" required />
                   <div class="error"></div>
                 </div>
+              </div>
+              <div class="field-row">
                 <div class="field">
-                  <label for="f-show">Capacity and spaces left</label>
+                  <label for="f-show">Spaces left</label>
                   <select id="f-show" name="show_remaining">
-                    <option value="true">Public: show them on the site</option>
-                    <option value="false">Private: only administrators see them</option>
+                    <option value="true">Public: show how many spaces are left</option>
+                    <option value="false">Private: do not show it</option>
                   </select>
-                  <div class="hint">Private hides the capacity and the number of spaces left from the public. People are still stopped when the event is full.</div>
+                </div>
+                <div class="field">
+                  <label for="f-show-capacity">Total capacity</label>
+                  <select id="f-show-capacity" name="show_capacity">
+                    <option value="false">Private: only administrators see it</option>
+                    <option value="true">Public: show the total number of places</option>
+                  </select>
+                  <div class="hint">People are stopped when the event is full, whatever you choose here.</div>
                 </div>
               </div>
               <div class="field-row">

@@ -95,11 +95,11 @@ grant select on public.admin_roles to authenticated;
 
 grant select on public.events to authenticated;
 grant insert (name, description, venue, event_date, start_time, end_date, end_time, capacity,
-              show_remaining, poster_path, registration_opens_at,
+              show_remaining, show_capacity, poster_path, registration_opens_at,
               registration_closes_at, checkin_opens_at, status)
   on public.events to authenticated;
 grant update (name, description, venue, event_date, start_time, end_date, end_time, capacity,
-              show_remaining, poster_path, registration_opens_at,
+              show_remaining, show_capacity, poster_path, registration_opens_at,
               registration_closes_at, checkin_opens_at, status)
   on public.events to authenticated;
 

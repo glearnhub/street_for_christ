@@ -358,7 +358,11 @@ Old `.html` addresses redirect to the clean ones, so bookmarks and shared links 
 
 ## Capacity: public or private
 
-In the event form, **Capacity and spaces left** is set to *Public* or *Private* for each event.
-Private hides the capacity and the spaces-left number from the public site and from the public
-data itself; administrators always see them, and registration still stops when the event is full.
-To apply this to an existing database, re-run `sql/functions.sql` and then `sql/policies.sql`.
+Each event has two separate settings in the event form:
+
+* **Spaces left**: *Public* shows how many places remain (the default); *Private* hides it.
+* **Total capacity**: *Private* (the default) hides the total number of places; *Public* shows it.
+
+Hidden numbers are not sent to the public site at all, administrators always see them, and
+registration still stops when the event is full. To apply this to an existing database, re-run
+`sql/schema.sql`, `sql/functions.sql` and `sql/policies.sql`.

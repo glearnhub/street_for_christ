@@ -151,6 +151,7 @@ function openEventForm(ev = null) {
     form.end_time.value = (ev.end_time || '').slice(0, 5)
     form.capacity.value = ev.capacity
     form.show_remaining.value = String(ev.show_remaining)
+    form.show_capacity.value = String(Boolean(ev.show_capacity))
     form.registration_opens_at.value = toLocalInput(ev.registration_opens_at)
     form.registration_closes_at.value = toLocalInput(ev.registration_closes_at)
     form.checkin_opens_at.value = toLocalInput(ev.checkin_opens_at)
@@ -188,6 +189,7 @@ function readForm(form) {
     end_time: form.end_time.value || null,
     capacity: num(form.capacity.value),
     show_remaining: form.show_remaining.value === 'true',
+    show_capacity: form.show_capacity.value === 'true',
     opens: form.registration_opens_at.value ? new Date(form.registration_opens_at.value) : null,
     closes: form.registration_closes_at.value ? new Date(form.registration_closes_at.value) : null,
     checkinOpens: form.checkin_opens_at.value ? new Date(form.checkin_opens_at.value) : null,
@@ -260,6 +262,7 @@ async function saveEvent(statusChoice) {
       end_time: v.end_time,
       capacity: v.capacity,
       show_remaining: v.show_remaining,
+      show_capacity: v.show_capacity,
       registration_opens_at: v.opens ? v.opens.toISOString() : null,
       registration_closes_at: v.closes ? v.closes.toISOString() : null,
       checkin_opens_at: v.checkinOpens ? v.checkinOpens.toISOString() : null,
